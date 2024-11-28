@@ -16,6 +16,7 @@ document.getElementById("imageForm").addEventListener("submit", function(event) 
     
     // 繪製文本
     context.font = "20px Arial";
+    context.fillStyle = "black"; // 設定文字顏色
     context.fillText(inputData, 50, 100); // 在 (50, 100) 位置顯示文本
 });
 
