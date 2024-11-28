@@ -1,73 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>圖片生成工具</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        img {
-            margin-top: 20px;
-            max-width: 100%;
-        }
-    </style>
+    <title>生成工具</title>
+    <link rel="stylesheet" href="style.css"> <!-- 如果有樣式 -->
 </head>
 <body>
-    <h1>圖片生成工具</h1>
-    <button id="generate">生成圖片</button>
-    <img id="generated-image" src="" alt="" style="display:none;"/>
-
-    <script>
-        document.getElementById("generate").onclick = function() {
-            const base64Data = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAIGNIUk0A" +
-                "AHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktH" +
-                "RAD/AP8A/6C9p5MAAAV+SURBVFjD7ZdbbFRVFIa/dWbawgxQbtOYtkxr" +
-                "sRewnZa2XIKQEGmCCfFKJaGtIDwIYkFNQMVA5EEjMRrjJcYYjBBFEm94" +
-                "i8TEmBqpxjbQQgtMy3RKtVAo0EJLKWV6zvJh6oTCnGnV6Iuu5ORk9tl" +
-                "7/f9a/1p774H/usk/6Tzf560zQ/35qNDo7zRGtSgvZ7LmZXusvwO8ZXP" +
-                "lHbk5U61P3nhFv9+5U3NzktRurnM4+CSr4s4FVDUGRcVQxLjSeLzD/Wf" +
-                "A09PTJ3737ac/rl22ShLHJnLklxpETdv5w9KiOKS48G42r3ySisXzSPF" +
-                "MdeVlTdV1a0o/Hg349u3bjYlj+7pmpmRJ8sQk/HX1+OYUI2KffWf0YYs" +
-                "5s5ZSPMvkQO1+qg7WlfqyPfrO7r23zJtXcjY/K8kENUDQ66ros71voSI" +
-                "cavXjqnaR6fGOSHo4AYm7EjIGXfGWk/qag6goc+fdg5tEjp1qpvLh8jM" +
-                "F2R7KFs8nZDgxVLBEWbXpJQwJy2wOmrS1nGTX7rfZdeBLdsz1MYzlDXb" +
-                "Tl9ycKfr6ph2IwpG6OjJ9uVztuUxLsBZ1DKA4cLrGsaJyOyhR+yg0eI1" +
-                "T7R1cunCB55/fQk9fDw1NnVFZ2IrT3dVFXkEBZ35tR1WxcJCUkUdKZh7" +
-                "lj23jQPXPnO48T3V19U1r20628uFHH7P52W08uHxlTAkcNw6ULiv75UB" +
-                "tVcWM9Ew6TnfgTffS1hogs6iQO5Y8QMbthWzZ+hzv7txFw9EGCny5eL1" +
-                "pGKpUff4FXB3gcvdFcgvymT17Fv19IYoLixnvjp9+1B/YN6IEADNnePS" +
-                "1TTuQgQEaGuu4RjeL7i0jNceHIHR1dYV1FYvJkycDQlsgQKi3j/ofqil" +
-                "avIgkrxd3ogvThLZAkN7ebp55bnPj4cbf8uyL8A9WCodrahAJYRoXQZS" +
-                "qr/awfNqtJLgnDIFCsOkEF891gUDlhjUgIJbJu/v3snrVWoqL5pKRlUl" +
-                "G5nRam1uwBq/kjioDAAXZHl1RMj/y+3j7WR5a/RQz832oIQSbAhiWsO6" +
-                "JckSF5Phxw2vIHKBPB3jr1feZPiOT1qYAallUPr7Gqm86E5HetgitodZ" +
-                "Rgc6efs529WIpBJtbCDYFEBUeeaKCac7xJMe5ESXyoDDJkYDXmMCGjQ8" +
-                "R9DeTkX0bhjix1BqGab9FiUn14WauhpRjbacRDETMiESPbqwgzeEa6sT" +
-                "hiZShOSqQGjeB9RtWETh+AolyIsQggA6Kk5pjLYgqpQ+uxjV2QuSzogg" +
-                "jH3CmgCUgIpjGzQxsPRzxXzDaz3bEdD6as1xHmBQzBMFhiQhgqIiFdUM" +
-                "OB0dIgAo4NDaJmC7uL3s04VTnOZ2RUyBZWT4k4in8nuaaFFXXSAAKye6" +
-                "JGDpUF3+WwIIFs6ZMnZLKstJywht/JDbcrkT6DJPUcZNwquC8LkxDIU6" +
-                "FW9yJDIiF25WIqiDWzRQcsQjU1/7Q+/KLb0g07ktKllLtr6O/+xLiNJj" +
-                "iHs81yyRODNxxCcSPSaA/dA1N9rDt2RcQEY42H9Ge/r5Pjh4PRu4Xtuq" +
-                "sLLtv210lSx5JS8lItc+xxaHan7Ecwr4PdoGAhRKHUDR/EalpaRQVzgc" +
-                "Jw6x9vJxG//lhmLYEfDlJ1jtv7rFM04qZJURRhZ7e86iGZVIxcI8ZR3z" +
-                "cGE53tJGc7OXprZX64ivvpS9cuPDX65c7bR0r4s1Ip/VEMCY+Gt6GEsd" +
-                "7IkP9Vy9zprMd1CA1ZRqgXOrplhvBbQnk3Z40+M3XPyEj1IidjUlw403" +
-                "NADVQTNZvfJgG/4WoBR91UAfVYYhBsLnlr+AjIuErIyA40HAHRW1Y2zZ" +
-                "U1X/2X8uQ2dSAgUMMdBR7/cjZsLk4xiZgUbJkzr8Q//8GvwMcqxAQRdN" +
-                "yvwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNC0xMS0yMVQwMzo1MzowMCs" +
-                "wMDowML9GNDUAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjQtMTEtMjFUMDM" +
-                "6NTM6MDArMDA6MDDOG4yJAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI" +
-                "0LTExLTIxVDAzOjUzOjAwKzAwOjAwmQ6tVgAAAABJRU5ErkJggg==";
-            
-            const image = document.getElementById("generated-image");
-            image.src = "data:image/png;base64," + base64Data;
-            image.style.display = "block"; // 允許顯示生成的圖片
-        }
-    </script>
+    <h1>生成工具</h1>
+    <form id="imageForm">
+        <label for="inputData">輸入數據：</label>
+        <input type="text" id="inputData" required>
+        <button type="submit">生成</button>
+    </form>
+    <canvas id="outputCanvas" style="border:1px solid #000;"></canvas>
+    <button id="downloadBtn">下載圖片</button>
+    
+    <script src="script.js"></script>
 </body>
 </html>
