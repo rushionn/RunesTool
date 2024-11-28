@@ -64,7 +64,7 @@
         <div style="flex: 1; margin-right: 20px;">
             <h1>生成工具</h1>
             <form id="imageForm">
-                <label for="inputData">輸入數據（請輸入二進制編碼，例如：\\x89PNG\\x0d\\x0a...）：</label>
+                <label for="inputData">輸入數據（請輸入二進制編碼，例：\x89\x50\x4e\x47...）：</label>
                 <input type="text" id="inputData" required>
                 <button type="submit">生成</button>
             </form>
@@ -102,7 +102,7 @@
             const textarea = document.querySelector(selector);
             textarea.select();
             document.execCommand('copy');
-            alert('已複製內容！');
+            alert('已複製內容');
         }
     </script>
 </body>

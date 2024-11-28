@@ -5,7 +5,7 @@ document.getElementById("imageForm").addEventListener("submit", function(event) 
 
     // 檢查輸入的二進制數據格式
     if (!inputData.startsWith("\\x")) {
-        alert("請輸入有效的二進制編碼，例如：\\x89\\x50\\x4e\\x47...");
+        alert("請輸入有效的二進制編碼，例如：\x89\x50\x4e\x47...");
         return;
     }
 
