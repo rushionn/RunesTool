@@ -28,3 +28,15 @@ textarea {
     background-color: #172B4B; /* 文本區背景色 */
     color: #F5D07D; /* 文本區字體顏色 */
 }
+
+/* 設定容器的顯示樣式 */
+.example, .generate, .upload {
+    width: 100%;
+    max-width: 800px;
+    margin: 60px 0 20px 0; /* 增加上邊距 */
+    padding: 20px;
+    background-color: #1C2D4E;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 113, 196, 0.5);
+    position: relative;
+}
